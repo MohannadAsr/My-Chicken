@@ -33,7 +33,7 @@
     "exportData": "Dashboard-Daten exportieren",
     "exportDataDesc": "Exportieren Sie alle Ihre Daten in CSV-Dateien, ganz allein.",
     "resetData": "Dashboard-Daten zurücksetzen",
-    "resetDataDesc": "Setzen Sie Ihre Dashboard-Daten zurück und behalten Sie Ihr Administrator-Konto mit dem gleichen Code.",
+    "resetDataDesc": "Setzen Sie Ihre Dashboard-Daten zurück. Dadurch wird nur Ihre Berichtsliste zurückgesetzt und alle anderen Daten bleiben erhalten.",
     "resetDash": "Dashboard zurücksetzen"
   }
 }

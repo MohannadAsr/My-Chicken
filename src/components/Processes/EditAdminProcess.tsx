@@ -42,7 +42,7 @@ function EditAdminProcess() {
   const { refetch } = fetchProccessById(id);
   const [handler, setHandler] = React.useState<null | userDto>(null);
   const [date, setDate] = React.useState<null | Date>(null);
-  const { mutate } = MutateUpdateProcess();
+  const { mutate, isPending } = MutateUpdateProcess();
   const [selectedProducts, SetSelectedProducts] = React.useState<
     { id: string; quantity: number }[]
   >([]);
@@ -304,7 +304,9 @@ function EditAdminProcess() {
               );
             })}
             {selectedProducts?.length > 0 && (
-              <Button onClick={createProcess}>{t('update')}</Button>
+              <Button onClick={createProcess} disabled={isPending}>
+                {t('update')}
+              </Button>
             )}
           </div>
         </div>

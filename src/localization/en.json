@@ -33,7 +33,7 @@
     "exportData": "Export Dashborad Data",
     "exportDataDesc": "Export All your data to CSV files , All Alone. ",
     "resetData": "Reset Dashboard Data",
-    "resetDataDesc": "Reset your Dashboard Data , and keep your admin account with the same code .",
+    "resetDataDesc": "Reset your Dashboard Data , this will reset your reports list only and keep all other data .",
     "resetDash": "Reset Dashboard"
   }
 }

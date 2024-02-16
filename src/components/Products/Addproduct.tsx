@@ -17,7 +17,7 @@ class InitValue {
 
 function Addproduct() {
   const { t } = useTranslation();
-  const { mutate, isSuccess } = MutateAddProduct();
+  const { mutate, isPending } = MutateAddProduct();
   const [multipile, setMultiple] = React.useState<boolean>(false);
 
   const [open, setOpen] = React.useState(false);
@@ -101,6 +101,7 @@ function Addproduct() {
                       {t('close')}
                     </ErrorButton>
                     <Button
+                      disabled={isPending}
                       type="submit"
                       endIcon={<AddIcon />}
                       variant="contained"

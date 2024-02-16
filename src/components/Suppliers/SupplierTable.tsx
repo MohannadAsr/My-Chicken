@@ -30,7 +30,7 @@ function SupplierTable() {
   return (
     <div>
       <DashTable
-        name="Suppliers"
+        name={t('suppliers')}
         selectedIds={selectedIds}
         onDelete={deleteBranches}
         setSelectedIds={setSelectedIds}

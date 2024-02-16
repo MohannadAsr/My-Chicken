@@ -39,7 +39,7 @@ function AddAdminProcess() {
   const { data: usersList } = fetchUsersList();
   const [handler, setHandler] = React.useState<null | userDto>(null);
   const [date, setDate] = React.useState<null | Date>(null);
-  const { mutate } = MutateCreateProcess();
+  const { mutate, isPending } = MutateCreateProcess();
   const [selectedProducts, SetSelectedProducts] = React.useState<
     { id: string; quantity: number }[]
   >([]);
@@ -58,7 +58,6 @@ function AddAdminProcess() {
     id: yup.string().required('Please Choose a Product'),
     quantity: yup.number().min(1).required('Please Choose the Product Value'),
   });
-
 
   const submit = (values: { id: string; quantity: number }) => {
     SetSelectedProducts((prev) => [
@@ -323,7 +322,9 @@ function AddAdminProcess() {
               );
             })}
             {selectedProducts?.length > 0 && (
-              <Button onClick={createProcess}>{t('save')}</Button>
+              <Button onClick={createProcess} disabled={isPending}>
+                {t('save')}
+              </Button>
             )}
           </div>
         </div>

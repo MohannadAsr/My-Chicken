@@ -11,7 +11,7 @@ function Products() {
   if (GetUserData()?.role !== 'admin')
     return (
       <>
-        <NavBar />
+        <NavBar hideMenu />
         <div className=" my-4">
           <ProcessesPage />
         </div>

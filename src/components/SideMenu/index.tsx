@@ -55,7 +55,7 @@ function SideMenu() {
   const { GetUserData } = useAuth();
 
   return (
-    <div className=" h-full min-h-[calc(100vh-60px)] max-h-[100vh] sticky top-0 ">
+    <div className=" h-full min-h-[calc(100vh-80px)] max-h-[100vh] sticky top-0 ">
       <Paper className=" h-full px-1 lg:px-3" elevation={3}>
         <List>
           {SideMenuList.filter((item) =>

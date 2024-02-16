@@ -28,7 +28,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 function ProcessesPage() {
   const { t } = useTranslation();
   const { data: ProductList, refetch } = fetchProductsList();
-  const { mutate } = MutateCreateProcess();
+  const { mutate, isPending } = MutateCreateProcess();
   const [selectedProducts, SetSelectedProducts] = React.useState<
     { id: string; quantity: number }[]
   >([]);
@@ -254,7 +254,9 @@ function ProcessesPage() {
           );
         })}
         {selectedProducts?.length > 0 && (
-          <Button onClick={createProcess}>{t('save')}</Button>
+          <Button onClick={createProcess} disabled={isPending}>
+            {t('save')}
+          </Button>
         )}
       </div>
     </div>

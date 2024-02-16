@@ -32,7 +32,7 @@ function ProductsTable() {
         selectedIds={selectedIds}
         onDelete={deleteBranches}
         setSelectedIds={setSelectedIds}
-        name="products"
+        name={t('products')}
         isFetching={isFetching}
         isLoading={isLoading}
         actions={<Addproduct />}

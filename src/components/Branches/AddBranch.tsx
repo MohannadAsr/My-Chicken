@@ -17,7 +17,7 @@ class InitValue {
 
 function AddBranch() {
   const { t } = useTranslation();
-  const { mutate, isSuccess } = MutateAddUser();
+  const { mutate, isPending } = MutateAddUser();
   const [multipile, setMultiple] = React.useState<boolean>(false);
   const [open, setOpen] = React.useState(false);
   const validationSchema = yup.object({
@@ -101,6 +101,7 @@ function AddBranch() {
                       {t('close')}
                     </ErrorButton>
                     <Button
+                      disabled={isPending}
                       type="submit"
                       endIcon={<AddIcon />}
                       variant="contained"

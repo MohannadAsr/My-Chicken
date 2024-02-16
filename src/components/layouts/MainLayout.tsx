@@ -16,7 +16,7 @@ function MainLayout({ children }: { children }) {
 
   return (
     <>
-      <div className="  h-full min-h-[100vh]  relative">
+      <div className="  h-full  relative">
         <NavBar state={state} setState={setState} />
         <div className=" grid grid-cols-12">
           <div
@@ -31,7 +31,7 @@ function MainLayout({ children }: { children }) {
               state
                 ? 'col-span-10 md:col-span-9 xl:col-span-10  '
                 : ' col-span-12'
-            } px-2 md:px-3 py-10  relative h-full min-h-[100vh] `}
+            } px-2 md:px-3 py-10  relative h-full  `}
           >
             <span className=" absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 z-[-1] -translate-y-1/2 opacity-5 flex items-center justify-center">
               <img

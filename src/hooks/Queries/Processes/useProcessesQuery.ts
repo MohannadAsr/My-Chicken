@@ -72,6 +72,7 @@ export const fetchfullProcessList = () => {
     queryFn: async () => fetchAllProcesses(),
     retryDelay: 5000,
     refetchOnMount: true,
+    enabled: false,
   });
 };
 

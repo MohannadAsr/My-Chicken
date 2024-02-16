@@ -96,21 +96,20 @@ function ProcessTable({
         selectedIds={selectedIds}
         onDelete={delteProcesses}
         setSelectedIds={setSelectedIds}
-        name="Processes"
+        name={t('reports')}
         isFetching={isFetching}
         isLoading={isLoading}
         filterOptions={
           <>
-            {data?.processes?.length !== 0 && (
-              <FilterOptions
-                initialFilters={{ ...filterOptions }}
-                users={usersList}
-                products={productsList}
-                filter={filter}
-                setFilter={setFilter}
-                submitFilter={submitFilter}
-              />
-            )}
+            <FilterOptions
+              disabled={isFetching}
+              initialFilters={{ ...filterOptions }}
+              users={usersList}
+              products={productsList}
+              filter={filter}
+              setFilter={setFilter}
+              submitFilter={submitFilter}
+            />
           </>
         }
         actions={

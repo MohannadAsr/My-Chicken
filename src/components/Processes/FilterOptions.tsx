@@ -24,6 +24,7 @@ function FilterOptions({
   setFilter,
   submitFilter,
   initialFilters,
+  disabled,
 }: {
   users: userDto[];
   products: productDto[];
@@ -31,6 +32,7 @@ function FilterOptions({
   setFilter: React.Dispatch<React.SetStateAction<filterOptionsDto>>;
   submitFilter: () => void;
   initialFilters: filterOptionsDto;
+  disabled: boolean;
 }) {
   const { pathname } = useLocation();
   const { t } = useTranslation();
@@ -130,6 +132,7 @@ function FilterOptions({
 
       <div className=" flex flex-wrap items-center gap-3 col-span-2 md:col-span-1">
         <Button
+          disabled={disabled}
           className=" w-full"
           startIcon={<FilterAltIcon />}
           onClick={submitFilter}
@@ -137,6 +140,7 @@ function FilterOptions({
           {t('filter')}
         </Button>
         <Button
+          disabled={disabled}
           className=" w-full"
           startIcon={<RestartAltIcon />}
           onClick={() => {

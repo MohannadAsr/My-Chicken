@@ -17,7 +17,7 @@ class InitValue {
 
 function AddSupllier() {
   const { t } = useTranslation();
-  const { mutate, isSuccess } = MutateAddUser();
+  const { mutate, isPending } = MutateAddUser();
   const [open, setOpen] = React.useState(false);
   const [multipile, setMultiple] = React.useState<boolean>(false);
 
@@ -101,6 +101,7 @@ function AddSupllier() {
                       {t('close')}
                     </ErrorButton>
                     <Button
+                      disabled={isPending}
                       type="submit"
                       endIcon={<AddIcon />}
                       variant="contained"

@@ -18,6 +18,8 @@ import { format } from 'date-fns';
 import DangerousIcon from '@mui/icons-material/Dangerous';
 import { productDto } from '@src/Api/Products/Dto';
 import { useTranslation } from 'react-i18next';
+import DashDialog from '@components/shared/Dialog/DashDialog';
+import { ErrorButton } from '@src/styles/globalMuiStyls';
 
 export const usersListToCSV = (data: userDto[]) => {
   return [
@@ -45,9 +47,13 @@ export const productsListToCSV = (data: productDto[]) => {
 function ExportData() {
   const { t } = useTranslation();
   const { data: userList, isLoading: userloading } = fetchUsersList();
-  const { data: processesList, isLoading: processloading } =
-    fetchfullProcessList();
+  const {
+    data: processesList,
+    isLoading: processloading,
+    refetch,
+  } = fetchfullProcessList();
   const { data: productList, isLoading: productloading } = fetchProductsList();
+  const [open, setOpen] = React.useState(false);
 
   const ExportState = (data: any[], loading: boolean) => {
     if (loading)
@@ -57,7 +63,7 @@ function ExportData() {
         disable: true,
       };
     if (data && data?.length == 0)
-      return { icon: <DangerousIcon />, text: 'No Data', disable: true };
+      return { icon: <DangerousIcon />, text: 'Keine Daten', disable: true };
     return { icon: <FileUploadIcon />, text: t('export'), disable: false };
   };
 
@@ -68,7 +74,7 @@ function ExportData() {
         <h2 className=" text-lg md:text-xl font-bold">{t('exportData')}</h2>
       </div>
       <p>{t('exportDataDesc')}</p>
-      <div className=" my-3 grid grid-cols-2 gap-1 lg:gap-4 lg:grid-cols-4">
+      <div className=" my-3 grid grid-cols-1 gap-1 lg:gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Paper className=" shadow-md flex flex-col justify-center items-center w-full gap-4 text-lg md:text-2xl mx-auto border-[2px] border-[#fe532d] p-4 rounded-md">
           <StorefrontIcon />
           <h1 className=" font-semibold">{t('branches')}</h1>
@@ -179,27 +185,62 @@ function ExportData() {
           <BarChartIcon />
           <h1 className=" font-semibold">{t('reports')}</h1>
           <Button
-            startIcon={ExportState(processesList || [], processloading).icon}
-            disabled={ExportState(processesList || [], processloading).disable}
+            startIcon={<FileUploadIcon />}
             style={{
               backgroundImage: 'linear-gradient(45deg,#fe532d,#ef9719)',
             }}
-            className=" w-full "
+            className=" w-full"
+            onClick={() => {
+              setOpen(true);
+              refetch();
+            }}
           >
-            <CSVLink
-              data={processesToCSVData(processesList || [])}
-              separator={';'}
-              filename={`overview-${new Date().toLocaleDateString(
-                'en-GB'
-              )}.csv`}
-            >
-              <span className=" md:text-base text-xs">
-                {ExportState(processesList || [], processloading).text}
-              </span>
-            </CSVLink>
+            <span className=" md:text-base text-xs">{t('export')}</span>
           </Button>
         </Paper>
       </div>
+      <DashDialog
+        title={`${t('reports')} ${t('export')}`}
+        open={open}
+        handleClose={() => setOpen(false)}
+        body={
+          <div className=" flex flex-col  gap-3 items-start justify-center my-1">
+            <p>
+              Um die Leistung Ihrer App zu verbessern, klicken Sie bitte auf
+              „Exportieren“, um Ihre Daten herunterzuladen.
+            </p>
+            <div className="  flex  gap-3 items-center justify-center my-2 w-full">
+              <ErrorButton onClick={() => setOpen(false)}>
+                {t('close')}
+              </ErrorButton>
+              <Button
+                startIcon={
+                  ExportState(processesList || [], processloading).icon
+                }
+                disabled={
+                  ExportState(processesList || [], processloading).disable
+                }
+                style={{
+                  backgroundImage: 'linear-gradient(45deg,#fe532d,#ef9719)',
+                }}
+                onClick={() => setOpen(false)}
+              >
+                <CSVLink
+                  data={processesToCSVData(processesList || [])}
+                  separator={';'}
+                  filename={`overview-${new Date().toLocaleDateString(
+                    'en-GB'
+                  )}.csv`}
+                >
+                  <span className=" md:text-base text-xs">
+                    {ExportState(processesList || [], processloading).text}
+                  </span>
+                </CSVLink>
+              </Button>
+            </div>
+          </div>
+        }
+      />
     </div>
   );
 }

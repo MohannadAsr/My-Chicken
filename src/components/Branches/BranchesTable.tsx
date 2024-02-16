@@ -28,7 +28,7 @@ function BranchesTable() {
   return (
     <div>
       <DashTable
-        name="Branches"
+        name={t('branches')}
         selectedIds={selectedIds}
         onDelete={deleteBranches}
         setSelectedIds={setSelectedIds}

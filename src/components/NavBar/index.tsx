@@ -14,9 +14,11 @@ import { useTranslation } from 'react-i18next';
 function NavBar({
   state,
   setState,
+  hideMenu = false,
 }: {
   state?: boolean;
   setState?: React.Dispatch<boolean>;
+  hideMenu?: boolean;
 }) {
   const { t } = useTranslation();
   const { mode } = useSelector((state: RootState) => state.App);
@@ -32,11 +34,8 @@ function NavBar({
         className=" flex items-center justify-between  shadow-md py-4 px-3 text-white  font-bold"
       >
         <div className=" flex items-center gap-4 text-white">
-          {state && (
-            <IconButton
-              onClick={() => state && setState(!state)}
-              sx={{ color: '#fff' }}
-            >
+          {!hideMenu && (
+            <IconButton onClick={() => setState(!state)} sx={{ color: '#fff' }}>
               {state ? <RestaurantMenuIcon /> : <MenuIcon />}
             </IconButton>
           )}
