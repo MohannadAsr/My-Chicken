@@ -6,7 +6,7 @@ function RouteLayout() {
   const { GetUserData, isLoggedIn } = useAuth();
   const naviagte = useNavigate();
   React.useEffect(() => {
-    if (!isLoggedIn) return naviagte('/signin');
+    if (!isLoggedIn()) return naviagte('/signin');
     if (GetUserData()?.role == 'admin') return naviagte('branches');
 
     return naviagte('/products');

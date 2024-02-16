@@ -124,10 +124,10 @@ function AddAdminProcess() {
               }}
             >
               {usersList
-                ?.filter((item) => item.role !== 'admin')
+                ?.filter((item) => item?.role !== 'admin')
                 .map((item, index) => (
                   <MenuItem key={index} value={item.id}>
-                    {item.name} - {[item.role]}
+                    {item.name} - {[item?.role]}
                   </MenuItem>
                 ))}
             </Select>
