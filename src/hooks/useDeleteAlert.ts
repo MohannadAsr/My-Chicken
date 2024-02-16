@@ -27,7 +27,7 @@ const useDeleteAlert = (successFn: () => Promise<any>) => {
         };
 
         const onDecline = () => {
-          reject();
+          reject(new Error('declined'));
           closeDialog();
         };
         if (confirmButton && declineButton) {

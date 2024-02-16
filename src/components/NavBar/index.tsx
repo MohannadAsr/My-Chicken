@@ -28,6 +28,7 @@ function NavBar({
     <>
       <Paper
         sx={{
+          borderRadius: 0,
           backgroundImage:
             lightTheme.palette.mode == 'dark' ? '' : gradientBackGround,
         }}

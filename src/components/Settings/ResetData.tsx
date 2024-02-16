@@ -9,8 +9,12 @@ import { useTranslation } from 'react-i18next';
 const { DELETE } = useApi();
 function ResetData() {
   const { t } = useTranslation();
+  const [loading, setLoading] = React.useState(false);
   const resetDash = async () => {
-    await DELETE(`${Domain.API_URL}/resetdatabase`, []);
+    setLoading(true);
+    DELETE(`${Domain.API_URL}/resetdatabase`, []).finally(() => {
+      setLoading(false);
+    });
   };
 
   return (
@@ -21,7 +25,11 @@ function ResetData() {
       </div>
       <p>{t('resetDataDesc')}</p>
       <div className="my-3">
-        <ErrorButton onClick={resetDash} startIcon={<WarningIcon />}>
+        <ErrorButton
+          disabled={loading}
+          onClick={resetDash}
+          startIcon={<WarningIcon />}
+        >
           {t('resetDash')}
         </ErrorButton>
       </div>

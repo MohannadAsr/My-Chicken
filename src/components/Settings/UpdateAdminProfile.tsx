@@ -70,7 +70,10 @@ function UpdateAdminProfile() {
               />
             </div>
             <div className=" my-3">
-              <Button type="submit"> {t('update')}</Button>
+              <Button type="submit" disabled={isPending}>
+                {' '}
+                {t('update')}
+              </Button>
             </div>
           </Form>
         </Formik>
