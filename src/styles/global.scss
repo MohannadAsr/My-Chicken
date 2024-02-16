@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
+  transition: 0.3s background-color;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  html {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.search-input {
+  @apply p-2 border-[1px] border-primary rounded-xl;
+}
+
+.site-section {
+  @apply py-10;
+}
+
+.error-msg {
+  @apply px-2 text-red-500 font-bold text-sm;
+}
+
+.nav-trans {
+  transition: all 0.4s ease-in-out;
+}
+
+html:dir(ltr) {
+  .active-nav::after {
+    position: absolute;
+    content: '';
+    left: -10px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: var(--after-bg-color, #fb5f2f);
+  }
+}
+
+html:dir(rtl) {
+  .active-nav::after {
+    position: absolute;
+    content: '';
+    right: -10px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: var(--after-bg-color, #fb5f2f);
+  }
+}
+
+@keyframes shake {
+  0%,
+  75%,
+  100% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+}
+
+.cart-anim {
+  /* Add other cart styles here */
+  animation: shake 0.8s ease-in-out infinite;
+  animation-delay: 2s;
+  animation-fill-mode: both;
+}
+
+.coupon-card {
+  background-image: linear-gradient(to bottom, #fc691e, #ffa87b);
+}
+
+.card-transition {
+  transition: all 0.4s linear;
+  img {
+    transition: all 0.4s linear;
+  }
+  div {
+    transition: all 0.4s linear;
+  }
+}
+
+.swiper-news .swiper-pagination-bullet {
+  background-color: #fb5f2f !important;
+  padding: 7px;
+  height: 1px;
+  width: 10px !important;
+}
+
+#toast-container {
+  .toast {
+    position: relative;
+    animation: toast-anim 0.4s linear forwards;
+    width: 100%;
+    padding: 19px;
+    color: white;
+    border-radius: 20px;
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+}
+@keyframes toast-anim {
+  0% {
+    bottom: -110px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+.side-menu {
+  height: calc(100vh - 88px);
+}
+
+// Mui Desktop Clock display flex for ok button
+.css-1g7nc1s-MuiPickersLayout-root .MuiPickersLayout-actionBar {
+  display: flex;
+  justify-content: center;
+}
+
+.payment-active-border::after {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  content: '';
+  border-radius: 20px;
+  border: 5px solid; /* Set a solid border color */
+  border-image: linear-gradient(
+    45deg,
+    #fe532d,
+    #ef9719
+  ); /* Define the linear gradient */
+  border-image-slice: 1; /* Set the border image slicing */
+}
+
+.rotating-favorite {
+  animation: rotate 0.4s linear infinite alternate;
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
