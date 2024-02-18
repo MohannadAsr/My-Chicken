@@ -35,7 +35,9 @@ function Login() {
           value={otp}
           onChange={handleChange}
           length={5}
-          TextFieldsProps={{ type: 'number' }}
+          TextFieldsProps={{
+            type: 'tel',
+          }}
         />
       </div>
     </div>
