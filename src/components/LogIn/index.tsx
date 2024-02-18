@@ -31,7 +31,12 @@ function Login() {
         Bitte geben Sie den Code ein, um fortzufahren
       </h1>
       <div className=" max-w-[650px]">
-        <MuiOtpInput value={otp} onChange={handleChange} length={5} />
+        <MuiOtpInput
+          value={otp}
+          onChange={handleChange}
+          length={5}
+          TextFieldsProps={{ type: 'number' }}
+        />
       </div>
     </div>
   );
