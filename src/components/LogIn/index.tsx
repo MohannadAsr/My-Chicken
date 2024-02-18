@@ -1,8 +1,7 @@
-import React from 'react';
-import { MuiOtpInput } from 'mui-one-time-password-input';
 import { useAuth } from '@src/hooks/useAuth';
+import { MuiOtpInput } from 'mui-one-time-password-input';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
 import logo from '/logo.svg';
 
 function Login() {
@@ -32,6 +31,7 @@ function Login() {
       </h1>
       <div className=" max-w-[650px]">
         <MuiOtpInput
+          autoFocus
           value={otp}
           onChange={handleChange}
           length={5}
