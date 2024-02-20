@@ -27,9 +27,15 @@ export class processDataDto {
   productsList = [] as { id: string; quantity: number; productName: string }[];
 }
 
+export class processStatsDto {
+  id = '' as string;
+  name = '' as string;
+  totalCount = 0 as number;
+}
 export class processDto {
   processes = [] as processDataDto[];
   pagination = new PaginationDto() as PaginationDto;
+  stats = [] as processStatsDto[];
 }
 
 export class filterOptionsDto {

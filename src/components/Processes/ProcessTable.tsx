@@ -1,5 +1,6 @@
 import DashDialog from '@components/shared/Dialog/DashDialog';
 import DashTable from '@components/shared/Table/DashTable';
+import AddIcon from '@mui/icons-material/Add';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
 import InfoIcon from '@mui/icons-material/Info';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -17,17 +18,16 @@ import {
   MutateDeleteProcesses,
   fetchProcessesList,
 } from '@src/hooks/Queries/Processes/useProcessesQuery';
+import { fetchProductsList } from '@src/hooks/Queries/Products/userProductsQuery';
 import { fetchUsersList } from '@src/hooks/Queries/Users/useUsersQuery';
 import { ErrorButton } from '@src/styles/globalMuiStyls';
 import { format } from 'date-fns';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
-import { fetchProductsList } from '@src/hooks/Queries/Products/userProductsQuery';
-import AddIcon from '@mui/icons-material/Add';
 import DownloadCSV from './DownloadCSV';
 import FilterOptions from './FilterOptions';
-import { useTranslation } from 'react-i18next';
+import ProcessesStats from './ProcessesStats';
 
 function ProcessTable({
   filterOptions = new filterOptionsDto(),
@@ -91,7 +91,7 @@ function ProcessTable({
   };
 
   return (
-    <div>
+    <div className=" overflow-hidden">
       <DashTable
         selectedIds={selectedIds}
         onDelete={delteProcesses}
@@ -131,7 +131,7 @@ function ProcessTable({
         ]}
         data={data?.processes?.map((item) => {
           return {
-            id: item.id,
+            id: item?.id,
             cells: [
               usersList?.find((user) => user.id == item.handlerId) ? (
                 <p
@@ -206,7 +206,7 @@ function ProcessTable({
               <>
                 <IconButton
                   disabled={
-                    usersList.findIndex((user) => user.id == item.handlerId) ==
+                    usersList?.findIndex((user) => user.id == item.handlerId) ==
                     -1
                   }
                   onClick={() => naviagte(`/adminModifyProcess/${item.id}`)}
@@ -286,6 +286,7 @@ function ProcessTable({
           </div>
         }
       />
+      <ProcessesStats data={data?.stats} />
     </div>
   );
 }
