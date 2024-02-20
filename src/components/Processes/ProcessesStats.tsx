@@ -42,7 +42,7 @@ function ProcessesStats({
   ));
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 px-1 md:px-3">
       <p className=" text-xl md:text-3xl font-semibold">Produktstatistik</p>
       <div className="flex flex-wrap gap-2 ">{paperItems}</div>
       <ApexBarChart data={data} />
