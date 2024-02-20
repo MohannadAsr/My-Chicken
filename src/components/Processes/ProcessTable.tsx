@@ -13,7 +13,7 @@ import {
   Pagination,
   Tooltip,
 } from '@mui/material';
-import { filterOptionsDto } from '@src/Api/Processes/Dto';
+import { filterOptionsDto, processDto } from '@src/Api/Processes/Dto';
 import {
   MutateDeleteProcesses,
   fetchProcessesList,
@@ -28,6 +28,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import DownloadCSV from './DownloadCSV';
 import FilterOptions from './FilterOptions';
 import ProcessesStats from './ProcessesStats';
+
+const filterStatsData = (
+  productFilter: string | string[],
+  data: processDto['stats']
+): processDto['stats'] => {
+  if (productFilter?.length == 0 || productFilter == '') return data;
+  if (Array.isArray(productFilter)) {
+    return data?.filter((stat) => productFilter.includes(stat.id));
+  } else {
+    return data?.filter((stat) => stat.id == productFilter);
+  }
+};
 
 function ProcessTable({
   filterOptions = new filterOptionsDto(),
@@ -286,7 +298,11 @@ function ProcessTable({
           </div>
         }
       />
-      <ProcessesStats data={data?.stats} productsList={productsList} />
+
+      <ProcessesStats
+        data={filterStatsData(filter?.productId, data?.stats)}
+        productsList={productsList}
+      />
     </div>
   );
 }
