@@ -286,7 +286,7 @@ function ProcessTable({
           </div>
         }
       />
-      <ProcessesStats data={data?.stats} />
+      <ProcessesStats data={data?.stats} productsList={productsList} />
     </div>
   );
 }

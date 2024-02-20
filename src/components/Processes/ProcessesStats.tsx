@@ -1,9 +1,17 @@
 import ApexBarChart from '@components/shared/ApexBarChart';
 import { Card, Paper } from '@mui/material';
 import { processStatsDto } from '@src/Api/Processes/Dto';
+import { productDto } from '@src/Api/Products/Dto';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function ProcessesStats({ data }: { data: processStatsDto[] }) {
+function ProcessesStats({
+  data,
+  productsList,
+}: {
+  data: processStatsDto[];
+  productsList: productDto[];
+}) {
   if (!data) return <></>;
 
   const paperItems = data.map((item) => (
@@ -12,7 +20,17 @@ function ProcessesStats({ data }: { data: processStatsDto[] }) {
       className="p-4 text-center flex-1 h-auto flex flex-col gap-1 items-center justify-center shadow-sm"
       elevation={5}
     >
-      <p>{item.name}</p>
+      <Link
+        to={
+          productsList?.find((product) => product?.id == item?.id)?.id
+            ? `/products/${
+                productsList?.find((product) => product?.id == item?.id)?.id
+              }`
+            : null
+        }
+      >
+        <p>{item.name}</p>
+      </Link>
       <p
         className={`${
           item.totalCount < 0 ? 'text-red-500' : 'text-success'
