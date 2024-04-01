@@ -9,6 +9,7 @@ export const backgroundGradient = {
     color: 'white',
   },
 };
+
 export const SuccessButtonGradient =
   'linear-gradient(120deg,#5cb85c, 99.9%, #00CDAC )';
 export const gradientBackGround = 'linear-gradient(120deg,#e30513, #fa3845 )';
