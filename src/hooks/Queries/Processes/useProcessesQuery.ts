@@ -8,7 +8,12 @@ import {
 import { PROCESSES_API } from '@src/Api/Processes/EndPoints';
 import { useApi } from '@src/hooks/useApi';
 import { useToast } from '@src/hooks/useToast';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  keepPreviousData,
+} from '@tanstack/react-query';
 import { isString } from 'formik';
 
 const { GET, POST, DELETE } = useApi();
@@ -56,12 +61,13 @@ export const fetchProcessesList = (filterOptions = new filterOptionsDto()) => {
       // `${filterOptions.startDate}`,
       // `${filterOptions.endDate}`,
       // `${filterOptions.productId}`,
-      // `${filterOptions.pageIndex}`,
+      `${filterOptions.pageIndex}`,
     ],
     queryFn: async () => fetchprocess(filterOptions),
     retryDelay: 5000,
     refetchOnMount: true,
     enabled: false,
+    placeholderData: keepPreviousData,
     // staleTime: Infinity, // Disable automatic refetching
   });
 };

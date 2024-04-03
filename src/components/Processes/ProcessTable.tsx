@@ -81,7 +81,7 @@ function ProcessTable({
 
   React.useEffect(() => {
     refetch();
-  }, []);
+  }, [pageIndex]);
 
   const navigateTo = (item) => {
     const target = usersList?.find((user) => user.id == item.handlerId);
@@ -236,7 +236,7 @@ function ProcessTable({
           count={data?.pagination?.totalPages || 0}
           onChange={(_e, val) => {
             setPageIndex(val);
-            refetch();
+            // refetch();
           }}
         />
       </div>
