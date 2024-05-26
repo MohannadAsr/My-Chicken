@@ -32,7 +32,7 @@ function ProcessesPage() {
   const [selectedProducts, SetSelectedProducts] = React.useState<
     { id: string; quantity: number }[]
   >([]);
-  const { GetUserData } = useAuth();
+  const { GetUserData, LogOut } = useAuth();
 
   const [currentPorduct, setCurrentProduct] = React.useState<{
     id: string;
@@ -84,6 +84,7 @@ function ProcessesPage() {
         onSuccess: () => {
           SetSelectedProducts([]);
           refetch();
+          LogOut();
         },
       }
     );
